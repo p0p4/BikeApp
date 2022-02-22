@@ -12,3 +12,9 @@ const Tiles = L.tileLayer('https://cdn.digitransit.fi/map/v1/{id}/{z}/{x}/{y}@2x
 }).addTo(map);
 
 map.setView([60.192059, 24.945831], 12);
+
+function addMarker(crd, text) {
+    return L.marker([crd.latitude, crd.longitude],).
+        addTo(map).
+        bindPopup(text);
+}

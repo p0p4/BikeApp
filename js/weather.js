@@ -9,14 +9,9 @@ const options = {
 function success(pos) {
   const crd = pos.coords;
 
-  console.log('Your current position is:');
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
+  addMarker(crd, 'Olen tässä.');
 
   getWeather(crd).then(function(weather){
-    console.log(weather.hourly[0].temp);
-    console.log(weather.hourly[1].temp);
     document.querySelector('#temp').innerHTML = `${weather.current.temp}`;
     document.querySelector('#main').innerHTML = `${weather.current.weather[0].main}`;
     document.querySelector('#description').innerHTML = `${weather.current.weather[0].description}`;
