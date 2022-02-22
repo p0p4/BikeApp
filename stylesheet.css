@@ -1,0 +1,43 @@
+/*colors
+9B1D20
+07090F
+FC9E4F
+94A89A
+797D81
+ */
+body{
+    margin: 0 auto;
+    width: 960px;
+}
+h1,h2,h3{
+    color:#9B1D20
+}
+a:link, a:visited{
+    text-decoration: none;
+    color:#FC9E4F;
+    font-weight: bold;
+    width: 160px;
+}
+header{
+    height: 100px;
+    margin-bottom: 70px;
+}
+header h1{
+    margin-left: 30px;
+    margin-top: 30px;
+    font-size: 40px;
+}
+footer{
+    margin: 40px 0;
+}
+a:hover{
+    color: #9B1D20;
+}
+nav a:link, nav a:visited{
+    background-color: #94A89A;
+    color: #9B1D20;
+}
+video{
+    margin-bottom: 20px;
+    margin-left: 160px;
+}
