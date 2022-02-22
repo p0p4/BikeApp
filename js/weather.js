@@ -9,7 +9,9 @@ const options = {
 function success(pos) {
   const crd = pos.coords;
 
-  addMarker(crd, 'Olen tässä.');
+  map.setView([crd.latitude, crd.longitude], 13);
+  const myLocation = addMarker(crd, "I'm here.");
+  myLocation.openPopup();
 
   getWeather(crd).then(function(weather){
     document.querySelector('#temp').innerHTML = `${weather.current.temp}`;
