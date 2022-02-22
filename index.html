@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet">
-</head>
-<body>
-<div>
-    <h2>Weather</h2>
-    <p id="temp"></p>
-    <p id="main"></p>
-    <p id="description"></p>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-<script src="js/weather.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>BikeApp</title>
+
+        <link 
+            rel="stylesheet" 
+            href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""/>
+
+        <script 
+            src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+    </head>
+    <body>
+        <header></header>
+        <main>
+            <div id="map" style="height:600px; width:900px;"></div>
+            <div>
+                <h2>Weather</h2>
+                <p id="temp"></p>
+                <p id="main"></p>
+                <p id="description"></p>
+            </div>
+        </main>
+    </body>
+    <script src="js/map.js"></script>
+    <script src="js/weather.js"></script>
 </html>
