@@ -12,6 +12,10 @@ body{
 h1,h2,h3{
     color:#9B1D20
 }
+nav ul{
+    list-style-type:none;
+    padding: 0;
+}
 a:link, a:visited{
     text-decoration: none;
     color:#FC9E4F;
@@ -34,8 +38,15 @@ a:hover{
     color: #9B1D20;
 }
 nav a:link, nav a:visited{
-    background-color: #94A89A;
+    background-color: #DADBD8;
     color: #9B1D20;
+}
+nav li{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-basis: auto;
 }
 video{
     margin-bottom: 20px;
