@@ -52,3 +52,6 @@ video{
     margin-bottom: 20px;
     margin-left: 160px;
 }
+img.markerRed{
+    filter: hue-rotate(120deg); 
+}

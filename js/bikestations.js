@@ -33,6 +33,11 @@ Spaces available: ${data.data.bikeRentalStations[i].spacesAvailable}<br>`;
       latitude: data.data.bikeRentalStations[i].lat,
       longitude: data.data.bikeRentalStations[i].lon,
     };
-    addMarker(crd, text);
+    L.circleMarker([crd.latitude, crd.longitude], {
+      radius: 5,
+      color: '#fbbd1a',
+      fillColor: 'white',
+      fillOpacity: 100
+   }).addTo(bikeStations);
   }
 })
