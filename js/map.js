@@ -13,96 +13,83 @@ L.tileLayer('https://cdn.digitransit.fi/map/v1/{id}/{z}/{x}/{y}@2x.png', {
   id: 'hsl-map'
 }).addTo(map);
 
-navigator.geolocation.getCurrentPosition(position => 
+const query = (fromPlace, toPlace, modes, itinerary) => {
+  return `
   {
-  const crd = position.coords;
-  map.setView([crd.latitude, crd.longitude], 17);
-  L.marker([crd.latitude, crd.longitude]).addTo(map).bindPopup("I'm here").openPopup()._icon.classList.add("markerRed");
+    plan(
+      fromPlace: "${fromPlace.name}::${fromPlace.latitude},${fromPlace.longitude}",
+      toPlace: "Kasarmitori, Helsinki::${toPlace}",
+      numItineraries: 1,
+      transportModes: [${modes}],
+    ) {
+      itineraries{
+        ${itinerary}
+      }
+    }
+  }`;                 //unfinished query design for testing purposes
+}
 
-  route(crd, 'lol');
-}, e => {
-    console.error(e);
-}, {
-    timeout: 5000,
-    maximumAge: 0,
-    enableHighAccuracy: true
-})
+const fetchRoute = async (query) => {
+  const url = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        query: query
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const body = await response.json();
+    console.log(body);
+    drawRoute(body);
 
-const route = async (fromPlace, toPlace) => {
-  const response = await fetch('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql', {
-    method: 'POST',
-    body: JSON.stringify({
-      query: `
-      query {
-          plan(
-            fromPlace: "Meitsi::${fromPlace.latitude},${fromPlace.longitude}",
-            toPlace: "Kasarmitori, Helsinki::60.165246,24.949128",
-            numItineraries: 2,
-            transportModes: [{mode: BUS}, {mode: WALK}],
-          ) {
-            itineraries{
-              walkDistance
-              duration
-              legs {
-                mode
-                startTime
-                endTime
-                from {
-                  lat
-                  lon
-                  name
-                  bikeRentalStation {
-                    stationId
-                    name
-                  }
-                }
-                to {
-                  lat
-                  lon
-                  name
-                  bikeRentalStation {
-                    stationId
-                    name
-                  }
-                }
-                distance
-                legGeometry {
-                  length
-                  points
-                }
-              }
-            }
-          }
-        }`
-    }),
-    headers: {'Content-Type': 'application/json'}
-  });
-  const body = await response.json();
-  console.log(body.data.plan.itineraries[0]);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
+const drawRoute = (body) => {
   itinerary_features.clearLayers();
-  body.data.plan.itineraries[0].legs.forEach(function(leg) 
-  {
-    const polylineWalk = L.polyline([], 
-      {
-        color: 'gray',
-        weight: 3
-      }).addTo(itinerary_features);
+  body.data.plan.itineraries[0].legs.forEach(function (leg) {
+    let color, weight;
+    if (leg.mode === 'BUS') { color = '#027ac9'; weight = 8; }
+    else if (leg.mode === 'BYCICLE') { color = '#fbbd1a'; weight = 6; }
+    else if (leg.mode === 'WALK') { color = 'gray'; weight = 3; }
 
-    const polylineBike = L.polyline([], 
+    const polylineLeg = L.polyline([],
       {
-        color: '#fbbd1a',
-        weight: 6
+        color: color,
+        weight: weight
       }).addTo(itinerary_features);
 
     const points = polyline.decode(leg.legGeometry.points);
 
-    points.forEach(function(_point, i) 
-    {
-      const drawRoute = (polylineLeg) => {
-        polylineLeg.addLatLng(L.latLng(points[i][0], points[i][1]));
-      }
-      leg.mode === 'BUS' ? drawRoute(polylineBike) : drawRoute(polylineWalk)
+    points.forEach(function (_point, i) {
+      polylineLeg.addLatLng(L.latLng(points[i][0], points[i][1]));
     });
   });
 }
+
+navigator.geolocation.getCurrentPosition(position => {
+  const crd = position.coords;
+  map.setView([crd.latitude, crd.longitude], 17);
+  L.marker([crd.latitude, crd.longitude]).addTo(map).bindPopup("I'm here").openPopup()._icon.classList.add("markerRed");
+
+  fetchRoute(query(
+    crd,
+    '60.165246,24.949128',
+    '{mode: BUS}, {mode: WALK}',
+    ` legs {
+      mode
+      legGeometry {
+        points
+      }
+    }`
+  ));
+}, (e) => {
+  console.error(e);
+}, {
+  timeout: 5000,
+  maximumAge: 0,
+  enableHighAccuracy: true
+});
