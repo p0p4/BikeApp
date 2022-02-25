@@ -38,6 +38,6 @@ Spaces available: ${data.data.bikeRentalStations[i].spacesAvailable}<br>`;
       color: '#fbbd1a',
       fillColor: 'white',
       fillOpacity: 100
-   }).addTo(bikeStations);
+   }).addTo(bikeStations).bindPopup(text);
   }
 })

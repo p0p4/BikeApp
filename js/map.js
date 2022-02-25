@@ -17,7 +17,7 @@ navigator.geolocation.getCurrentPosition(position =>
   {
   const crd = position.coords;
   map.setView([crd.latitude, crd.longitude], 17);
-  L.marker([crd.latitude, crd.longitude]).addTo(map)._icon.classList.add("markerRed");;
+  L.marker([crd.latitude, crd.longitude]).addTo(map).bindPopup("I'm here").openPopup()._icon.classList.add("markerRed");
 
   route(crd, 'lol');
 }, e => {
