@@ -55,3 +55,6 @@ video{
 img.markerRed{
     filter: hue-rotate(120deg); 
 }
+img.markerGreen{
+    filter: hue-rotate(240deg); 
+}
