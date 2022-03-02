@@ -16,41 +16,47 @@ const osm = L.tileLayer('https://cdn.digitransit.fi/map/v1/{id}/{z}/{x}/{y}@2x.p
 });
 osm.addTo(map);
 
-let userPos, userArea;
+let userMarker, userArea;
 map.on('locationfound', e => {
-  if (userPos) {
-    map.removeLayer(userPos);
+  if (userMarker) {
+    map.removeLayer(userMarker);
     map.removeLayer(userArea);
-}
-userArea = L.circle(e.latlng, {
-  radius: e.accuracy / 2,
-  opacity: 0.05
-}).addTo(userMarkers);
-userArea.bindPopup('You\'re within this area');
+  }
+  userArea = L.circle(e.latlng, {
+    radius: e.accuracy / 2,
+    opacity: 0.05
+  }).addTo(userMarkers);
+  userArea.bindPopup('You\'re within this area');
 
-userPos = L.circleMarker(e.latlng, {
-  radius: 8,
-  fillColor: 'white',
-  fillOpacity: 100
-}).addTo(userMarkers);
-userPos.bindPopup('Your location');
-console.log(e);
+  userMarker = L.circleMarker(e.latlng, {
+    radius: 8,
+    fillColor: 'white',
+    fillOpacity: 100
+  }).addTo(userMarkers);
+  userMarker.bindPopup('Your location');
+  /*
+    if (originMarker) {
+      map.setView(e.latlng);
+    }*/                     //toggle still needed
 })
-.on('locationerror', e => {
-  console.log(e);
-});
+  .on('locationerror', e => {
+    console.log(e);
+  });
 
 const locate = () => {
   map.locate();
 }
+locate();
 setInterval(locate, 5000);
 
-const query = (fromPlace, toPlace, modes, itinerary) => {
+map.setView([60.196431, 24.936256], 12);
+
+const query = (origin, destination, modes, itinerary) => {
   return `
   {
     plan(
-      fromPlace: "${fromPlace.name}::${fromPlace.lat},${fromPlace.lon}",
-      toPlace: "Kasarmitori, Helsinki::${toPlace.lat},${toPlace.lon}",
+      fromPlace: "${origin.name}::${origin.lat},${origin.lon}",
+      toPlace: "${destination.name}::${destination.lat},${destination.lon}",
       numItineraries: 1,
       transportModes: [${modes}],
     ) {
@@ -58,10 +64,10 @@ const query = (fromPlace, toPlace, modes, itinerary) => {
         ${itinerary}
       }
     }
-  }`;                 //unfinished query design for testing purposes
+  }`;
 }
 
-const fetchRoute = async (query) => {
+const fetchTransit = async (query) => {
   const url = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
   try {
     const response = await fetch(url, {
@@ -74,7 +80,6 @@ const fetchRoute = async (query) => {
     const body = await response.json();
     console.log(body);
     drawRoute(body);
-
   } catch (e) {
     console.log(e);
   }
@@ -96,70 +101,100 @@ const drawRoute = (body) => {
       }).addTo(itinerary_features);
 
     const points = polyline.decode(leg.legGeometry.points);
-
-    points.forEach(function (_point, i) {
+    points.forEach((_point, i) => {
       polylineLeg.addLatLng(L.latLng(points[i][0], points[i][1])).bindPopup(`Route method: <b>${leg.mode}</b>`);
-      polylineLeg.on('click', e => {
-        polylineLeg.openPopup();
-      })
     });
   });
 }
 
-let originMarker, destinationMarker;
-const routeInit = () => {
-  navigator.geolocation.getCurrentPosition(position => {
-    console.log(position);
-    const userPos = {
-      lat: position.coords.latitude,
-      lon: position.coords.longitude
-    }
-    map.setView([userPos.lat, userPos.lon], 17);
+let originMarker, destinMarker;
+const initRoute = (origin, destination, modes) => {
+  fetchTransit(query(
+    origin,
+    destination,
+    modes,
+    `legs {
+      mode
+      from {
+        lat
+        lon
+        name
+      }
+      to {
+        lat
+        lon
+        name
+      }
+      legGeometry {
+        points
+      }
+    }`
+  ));
 
-    const destination = {
-      lat: '60.165246',
-      lon: '24.949128'
-    }
+  markers.clearLayers();
+  originMarker = L.marker([origin.lat, origin.lon], {
+    draggable: true
+  }).bindPopup(`<b>Origin:</b><br>${origin.name}`).addTo(markers);
+  originMarker.on('click', () => {
+    originMarker.openPopup();
+  })._icon.classList.add("markerRed");
 
-    fetchRoute(query(
-      userPos,
-      destination,
-      '{mode: BUS}, {mode: WALK}',
-      `legs {
-        mode
-        from {
-          lat
-          lon
-          name
-        }
-        to {
-          lat
-          lon
-          name
-        }
-        legGeometry {
-          points
-        }
-      }`
-    ));
-    
-    originMarker = L.marker([userPos.lat, userPos.lon]).bindPopup('Origin marker').addTo(markers);
-    originMarker.on('click', e => {
-      originMarker.openPopup();
-    })._icon.classList.add("markerRed");
+  destinMarker = L.marker([destination.lat, destination.lon], {
+    draggable: true
+  }).bindPopup(`<b>Destination:</b><br>${destination.name}`).addTo(markers);
+  destinMarker.on('click', () => {
+    destinMarker.openPopup();
+  })._icon.classList.add("markerGreen");
 
-    destinationMarker = L.marker([destination.lat, destination.lon]).bindPopup('Destination marker').addTo(markers);
-    destinationMarker.on('click', e => {
-      destinationMarker.openPopup();
-    })._icon.classList.add("markerGreen");
-  
-  }, (e) => {
-    console.error(e);
-  }, {
-    timeout: 5000,
-    maximumAge: 0,
-    enableHighAccuracy: true
-  });
+  map.setView([origin.lat, origin.lon], 17);
 }
 
-routeInit();
+const add2coords = async (address) => {
+  const url = `https://api.digitransit.fi/geocoding/v1/search?text=
+    ${address}&boundary.circle.lat=60.160959094315416&boundary.circle.lon=24.95634747175871&boundary.circle.radius=17&size=1
+    &focus.point.lat=${map.getCenter().lat}&focus.point.lon=${map.getCenter().lng}`;
+  try {
+    const response = await fetch(url);
+    const json = await response.json();
+    const coords = {
+      name: json.features[0].properties.label,
+      lat: json.features[0].geometry.coordinates[1],
+      lon: json.features[0].geometry.coordinates[0]
+    }
+    console.log(coords);
+    return coords;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+window.onload = () => {
+  const form = document.getElementById('form');
+  const inputOrigin = document.getElementById('inputOrigin');
+  const inputDestin = document.getElementById('inputDestin');
+  form.onsubmit = (event) => {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      let origin;
+      if (inputOrigin.value !== '') {
+        origin = await add2coords(inputOrigin.value);
+      } else {
+        origin = {
+          name: 'Home',
+          lat: position.coords.latitude,
+          lon: position.coords.longitude
+        }
+      }
+      const destination = await add2coords(inputDestin.value);
+      const modes = '{mode: BUS}, {mode: WALK}';
+
+      initRoute(origin, destination, modes);
+    }, (e) => {
+      console.error(e);
+    }, {
+      timeout: 5000,
+      maximumAge: 0,
+      enableHighAccuracy: true
+    });
+  }
+}
