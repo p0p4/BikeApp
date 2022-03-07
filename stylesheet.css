@@ -1,60 +1,324 @@
-/*colors
+/*=============================================*/
+/*                    Colors                   */
+/*=============================================*/
+/*
 9B1D20
 07090F
 FC9E4F
 94A89A
 797D81
- */
-body{
-    margin: 0 auto;
-    width: 960px;
+*/
+
+
+/*=============================================*/
+/*                  Variables                  */
+/*=============================================*/
+
+:root
+{
+    /*COLORS*/
+    --color-main: #9B1D20;
+    --color-main-highlight: brown;
+    --color-white: white;
+    --color-border1: #DDD;
 }
-h1,h2,h3{
-    color:#9B1D20
-}
-nav ul{
-    list-style-type:none;
+
+/*=============================================*/
+/*                   Global                    */
+/*=============================================*/
+*
+{
+    margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
 }
-a:link, a:visited{
+body
+{
+    background-color: var(--color-main);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*=============================================*/
+/*                   Header                    */
+/*=============================================*/
+header
+{
+    background-color: var(--color-main);
+    width: 100%;
+    height: 10vh;
+    border-bottom: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.title-container > a
+{
     text-decoration: none;
-    color:#FC9E4F;
-    font-weight: bold;
-    width: 160px;
 }
-header{
-    height: 100px;
-    margin-bottom: 70px;
-}
-header h1{
-    margin-left: 30px;
-    margin-top: 30px;
+.title-container > a > h1
+{
     font-size: 40px;
-}
-footer{
-    margin: 40px 0;
-}
-a:hover{
-    color: #9B1D20;
-}
-nav a:link, nav a:visited{
-    background-color: #DADBD8;
-    color: #9B1D20;
-}
-nav li{
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    margin-left: 2vw;
+    color: var(--color-white);
+    align-items: center;
     justify-content: center;
-    flex-basis: auto;
+    cursor: pointer;
 }
-video{
+header > nav
+{
+    margin-right: 1.3vw;
+    height: 100%;
+}
+header > nav > ul
+{
+    display: flex;
+    list-style: none;
+    height: 100%;
+}
+header > nav > ul > li
+{
+    position: relative;
+}
+header > nav > ul > li > a
+{
+    padding: 0 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: 0;
+    position: relative;
+    cursor: pointer;
+    color: var(--color-white);
+}
+header > nav > ul > li > a:hover
+{
+    background-color: var(--color-main-highlight);
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+}
+
+
+/*=============================================*/
+/*                    Main                     */
+/*=============================================*/
+main
+{
+    display: flex;
+}
+aside
+{
+    width: 448px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--color-white);
+}
+.asideHandle
+{
+    display: none;
+}
+.form-container
+{
+    padding: 40px;
+}
+.destin-container
+{
+    border-bottom: 1px solid var(--color-border1);
+}
+label
+{
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 17px;
+}
+.inputs
+{
+    outline: none; 
+    width: 100%; 
+    padding-left: 40px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 7px;
+    border: 1px solid var(--color-border1);
+    border-radius: 25px;
     margin-bottom: 20px;
-    margin-left: 160px;
+    margin-top: 5px;
+    font-size: 15px;
 }
-img.markerRed{
+#inputOrigin
+{
+    background: url(media/icon/markerRed.ico);
+    background-repeat: no-repeat;
+    background-position: 0% 50%;
+    background-size: 36px 36px;
+}
+#inputDestin
+{
+    background: url(media/icon/markerGreen.ico);
+    background-repeat: no-repeat;
+    background-position: 0% 50%;
+    background-size: 36px 36px;
+}
+.subForm
+{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.weather-container
+{
+    padding: 40px;
+}
+.weather-container > h2
+{
+    padding-top: 15px;
+    border-top: 1px solid var(--color-border1);
+}
+
+
+/*=============================================*/
+/*                     Map                     */
+/*=============================================*/
+.map-content
+{
+    height: 90vh;
+    flex-grow: 1;
+}
+#map
+{
+    width: 100%;
+    height: 100%;
+}
+.popupInput
+{
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 1px 3px 1px 3px;
+    border: none;
+    border: 1px solid black; 
+    border-radius: 25px;
+    cursor: pointer;
+}
+.originBtn
+{
+    background: #e24470;
+    color: var(--color-white);
+}
+.destinBtn
+{
+    background: #118600;
+    color: var(--color-white);
+}
+img.markerRed
+{
     filter: hue-rotate(120deg); 
 }
-img.markerGreen{
+img.markerGreen
+{
     filter: hue-rotate(240deg); 
+}
+#toggleTrack
+{
+    background: url(media/icon/disTrack.ico) no-repeat center; 
+    background-size:cover;
+    margin: 0;
+}
+#toggleTrack.true
+{
+    background: url(media/icon/enaTrack.ico) no-repeat center; 
+    background-size:cover;
+}
+#toggleBikes
+{
+    margin: 0;
+}
+.leaflet-control
+{
+    background-color: var(--color-white);
+}
+.leaflet-control:hover
+{
+    background-color: #F5F4F4;
+}
+
+
+/*=============================================*/
+/*               Narrow screen                 */
+/*=============================================*/
+@media only screen and (max-width: 1020px) {
+    header
+    {
+        position: fixed;
+        z-index: 3;
+    }
+    main
+    {
+        margin-top: 10vh;
+    }
+    aside
+    {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        margin-top: 70vh;
+        z-index: 2;
+        border-radius: 25px 25px 0 0;
+        border: 1px solid var(--color-border1);
+    }
+    .asideHandle
+    {
+        margin: auto;
+        position: relative;
+        display: block;
+        top: 2.5vh;
+        width: 25vw;
+        height: 6px;
+        border-radius: 6px;
+        background-color: var(--color-border1);
+    }
+    .map-content
+    {
+        position: fixed;
+        flex-grow: 0;
+        height: 73vh;
+        z-index: 1;
+    }
+    #map
+    {
+        width: 100vw;
+        position: absolute;
+    }
+    .leaflet-bottom
+    {
+        margin-bottom: 3vh;
+    }
+}
+
+
+/*=============================================*/
+/*                Touch screen                 */
+/*=============================================*/
+@media (pointer: none), (pointer: coarse) {
+    #toggleTrack
+    {
+        width: 7vh;
+        height: 7vh;
+    }
+    #inputOrigin
+    {
+        background-size: 34px 34px;
+    }
+    #inputDestin
+    {
+        background-size: 34px 34px;
+    }
 }

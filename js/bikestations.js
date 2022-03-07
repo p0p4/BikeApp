@@ -26,7 +26,7 @@ fetch('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql', {
 
   for (let i = 0;i < data.data.bikeRentalStations.length;i++) {
 
-    const text = `${data.data.bikeRentalStations[i].name}<br>
+    const text = `<b>${data.data.bikeRentalStations[i].name}</b><br>
 Bikes available: ${data.data.bikeRentalStations[i].bikesAvailable}<br>
 Spaces available: ${data.data.bikeRentalStations[i].spacesAvailable}<br>`;
     const crd = {
@@ -34,7 +34,7 @@ Spaces available: ${data.data.bikeRentalStations[i].spacesAvailable}<br>`;
       longitude: data.data.bikeRentalStations[i].lon,
     };
     L.circleMarker([crd.latitude, crd.longitude], {
-      radius: 5,
+      radius: 6,
       color: '#fbbd1a',
       fillColor: 'white',
       fillOpacity: 100
