@@ -17,8 +17,6 @@ function success(pos) {
     getWeather().then(function(weather) {
       document.querySelector('#temp').innerHTML = `Temperature: ${weather.hourly[0].temp} C`;
       document.querySelector(
-          '#main').innerHTML = `${weather.hourly[0].weather[0].main}`;
-      document.querySelector(
           '#description').innerHTML = `Description: ${weather.hourly[0].weather[0].description}`;
     });
 }
@@ -51,8 +49,6 @@ function input (){
 
   getWeather().then(function(weather) {
     document.querySelector('#temp').innerHTML = `Temperature: ${weather.hourly[value].temp} C`;
-    document.querySelector(
-        '#main').innerHTML = `${weather.hourly[value].weather[0].main}`;
     document.querySelector(
         '#description').innerHTML = `Description: ${weather.hourly[value].weather[0].description}`;
   });
