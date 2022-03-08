@@ -183,7 +183,17 @@ label
     padding-top: 15px;
     border-top: 1px solid var(--color-border1);
 }
-
+figure {
+    padding:8px;
+    margin: 8px;
+}
+h1#about{
+    padding: 8px;
+    margin: 8px;
+}
+.weather-container {
+    line-height: 1.5em;
+}
 
 /*=============================================*/
 /*                     Map                     */
