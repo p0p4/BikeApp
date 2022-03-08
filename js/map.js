@@ -139,7 +139,8 @@ const bikeControl = L.Control.extend({
         L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
     }
     container.innerHTML += `
-              <a id="toggleBikes" class="leaflet-control" role="button" href="javascript:toggleBikes()">B</a>`;
+              <a id="toggleBikes" class="leaflet-control" role="button" href="javascript:toggleBikes()">B</a>
+                <a id="toggleBikes" class="leaflet-control" role="button" href="javascript:getStations()">Refresh</a>`;
     return container;
 }});
 map.addControl(new bikeControl());
