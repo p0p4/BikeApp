@@ -35,7 +35,7 @@ FC9E4F
 }
 body
 {
-    background-color: var(--color-main);
+    background-color: var(--color-white);
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -43,6 +43,7 @@ body
 #turn
 {
     display: none;
+    z-index: 0;
 }
 
 
@@ -112,12 +113,12 @@ header > nav > ul > li > a:hover
 /*=============================================*/
 /*                    Main                     */
 /*=============================================*/
-main
+.main-content
 {
     display: flex;
     background-color: var(--color-white);
 }
-aside.main-content
+.aside-content
 {
     width: 448px;
     height: 90vh;
@@ -182,6 +183,7 @@ label
 .weather-container
 {
     padding: 40px;
+    line-height: 1.5em;
 }
 .weather-container > h2
 {
@@ -193,45 +195,47 @@ label
 /*=============================================*/
 /*                   Media                     */
 /*=============================================*/
+.fixed-header
+{
+    position: fixed;
+    z-index: 2;
+}
 figure {
-    padding:8px;
-    margin: 8px;
+    padding: 0;
+    margin: 16px 16px;
+    position: relative;
 }
-h1#about{
-    padding: 8px;
-    margin: 8px;
-}
-.weather-container {
-    line-height: 1.5em;
-}
-.images {
+.mediaMain {
     display: flex;
-    background-color: lightgrey;
-    width: 300px;
-    text-align: center;
-    justify-content: space-between;
-    flex-direction: column;
-}
-.mainMedia {
+    z-index: 1;
+    margin-top: 10vh;
+    background-color: var(--color-white);
     height: 100%;
+}
+.mediaAside {
+    background-color: rgb(177, 177, 177);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 div#video {
     flex-direction: column;
     padding: 40px;
     font-size: 17px;
     line-height: 1.5rem;
+    width: fit-content;
 }
-@media only screen and (max-width: 1020px) {
-    .mainMedia {
+@media only screen and (max-width: 1220px) {
+    .mediaMain {
+        display: flex;
         flex-direction: column;
-        height: auto;
     }
-    .images
-    {
+    .mediaAside {
         display: flex;
         flex-direction: row;
         width: 100%;
-        justify-content: space-between;
+        justify-content: space-around;
     }
 }
 
@@ -239,17 +243,20 @@ div#video {
 /*                   About                     */
 /*=============================================*/
 .aboutMain {
+    margin-top: 10vh;
     padding: 40px;
     flex-direction: column;
-    height: 90vh;
+    height: 100%;
+    background-color: var(--color-white);
 }
-.aboutMain > h1
-{
+.aboutMain > h1 {
     margin-left: 16px;
 }
 .aboutFigures {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--color-border1);
 }
 article {
     margin-top: 30px;
@@ -328,6 +335,10 @@ img.markerGreen
 /*               Narrow screen                 */
 /*=============================================*/
 @media only screen and (max-width: 1020px) {
+    body
+    {
+        background-color: var(--color-main);
+    }
     header
     {
         position: fixed;
@@ -363,11 +374,11 @@ img.markerGreen
         height: 4vh;
         width: 4vh;
     }
-    main
+    .main-content
     {
         margin-top: 10vh;
     }
-    aside.main-content
+    .aside-content
     {
         position: absolute;
         width: 100%;
@@ -427,14 +438,16 @@ img.markerGreen
 }
 
 @media only screen and (pointer: none), (pointer: coarse) and (orientation: landscape) {
-    body
-    {
-        display: none;
-    }
     #turn
     {
+        position: fixed;
+        z-index: 4;
         display:flex;
         background-color: var(--color-main);
         color: var(--color-white);
+        width: 100vw;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
     }
 }

@@ -397,7 +397,7 @@ window.onload = () => {
       }
     } else {
       if (track) toggleTrack();
-      map.setView([origin.lat, origin.lon], 12);
+      map.setView([origin.lat, origin.lon]);
     }
   }
 }
