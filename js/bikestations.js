@@ -9,12 +9,10 @@ function getStations() {
     query {
           bikeRentalStations {
           name
-          stationId
           lon
           lat
           bikesAvailable
           spacesAvailable
-          allowDropoff
           }
        }
        `
