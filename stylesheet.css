@@ -197,6 +197,8 @@ h1#about{
     margin: 8px;
 }
 .weather-container {
+    background: url(media/sun.jpg) no-repeat center;
+    background-size: cover;
     line-height: 1.5em;
 }
 
