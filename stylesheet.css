@@ -117,7 +117,7 @@ main
     display: flex;
     background-color: var(--color-white);
 }
-aside
+aside.main-content
 {
     width: 448px;
     height: 90vh;
@@ -188,6 +188,11 @@ label
     padding-top: 15px;
     border-top: 1px solid var(--color-border1);
 }
+
+
+/*=============================================*/
+/*                   Media                     */
+/*=============================================*/
 figure {
     padding:8px;
     margin: 8px;
@@ -199,13 +204,16 @@ h1#about{
 .weather-container {
     line-height: 1.5em;
 }
-aside.media {
+.images {
+    display: flex;
     background-color: lightgrey;
     width: 300px;
     text-align: center;
-}
-main.media {
     justify-content: space-between;
+    flex-direction: column;
+}
+.mainMedia {
+    height: 100%;
 }
 div#video {
     flex-direction: column;
@@ -214,14 +222,34 @@ div#video {
     line-height: 1.5rem;
 }
 @media only screen and (max-width: 1020px) {
-    aside.media {
+    .mainMedia {
+        flex-direction: column;
+        height: auto;
+    }
+    .images
+    {
+        display: flex;
         flex-direction: row;
         width: 100%;
+        justify-content: space-between;
     }
 }
-main.about {
+
+/*=============================================*/
+/*                   About                     */
+/*=============================================*/
+.aboutMain {
+    padding: 40px;
     flex-direction: column;
-    padding: 40px
+    height: 90vh;
+}
+.aboutMain > h1
+{
+    margin-left: 16px;
+}
+.aboutFigures {
+    display: flex;
+    flex-direction: row;
 }
 article {
     margin-top: 30px;
@@ -229,6 +257,7 @@ article {
 #lorem {
     margin-bottom: 10px;
 }
+
 /*=============================================*/
 /*                     Map                     */
 /*=============================================*/
@@ -338,7 +367,7 @@ img.markerGreen
     {
         margin-top: 10vh;
     }
-    aside
+    aside.main-content
     {
         position: absolute;
         width: 100%;
