@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<link href="stylesheet.css" rel="stylesheet" type="text/css">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <title>BikeApp</title>
 
+        <link href="stylesheet.css" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">  
         <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -17,32 +21,51 @@
             crossorigin=""></script>
         <script src="https://unpkg.com/polyline@0.2.0/src/polyline.js"></script>
     </head>
-<header>
-    <h1>BikeApp</h1>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="tekijat.html">Tekijat</a></li>
-            <li><a href="video.html">Video</a></li>
-        </ul>
-    </nav>
-</header>
     <body>
-        <header></header>
+        <header>
+            <div class="title-container">
+                <a href="index.html"><h1>BikeApp</h1></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><h3>Home</h3></a></li>
+                    <li><a href="video.html"><h3>Video</h3></a></li>
+                    <li><a href="about.html"><h3>About</h3></a></li>
+                </ul>
+            </nav>
+        </header>
         <main>
-            <form id="form">
-                <input type="search" id="inputOrigin" placeholder="Use current location">
-                <input type="search" id="inputDestin" placeholder="Enter destination" required>
-                <input type="submit" style="visibility: hidden;">
-            </form>
-            <div id="map" style="height:600px; width:900px;"></div>
-            <div>
-                <h2>Weather</h2>
-                <button id="refresh" onclick="getStations()">Refresh stations</button>
-                <p id="value"></p>
-                <input id="myRange" value="0" type="range" step="1" oninput="input()" min="0" max="9">
-                <p id="temp"></p>
-                <p id="description"></p>
+            <aside>
+                <div class="asideHandle"></div>
+                <div class="form-container">
+                    <h2>Enter route</h2>
+                    <form id="form">
+                        <input type="submit" style="visibility: hidden;">
+                        <div class="origin-container">
+                            <label for="origin">Origin:</label>
+                            <input name="origin" type="search" id="inputOrigin" class="inputs" placeholder="Empty for your location">
+                        </div>
+                        <div class="destin-container">
+                            <label for="destination">Destination:</label>
+                            <input name="destination" type="search" id="inputDestin" class="inputs" placeholder="Enter destination" required>
+                        </div>
+                    </form>
+                    <div class="subForm">
+                        <p id="routeDuration"></p>
+                        <p id="routeDistance"></p>
+                    </div>
+                </div>
+                <div class="weather-container">
+                    <h2>Weather</h2>
+                    <p id="value"></p>
+                    <input id="myRange" value="0" type="range" step="1" oninput="input()" min="0" max="9">
+                    <p id="temp"></p>
+                    <p id="main"></p>
+                    <p id="description"></p>
+                </div>
+            </aside>
+            <div class="map-content">
+                <div id="map"></div>
             </div>
         </main>
     </body>
