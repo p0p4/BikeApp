@@ -217,9 +217,8 @@ const displayRoute = (itinerary) => {
   let disMet = 0;
   itinerary.legs.forEach(function (leg) {
     let color, weight, dash = '';
-    if (leg.mode === 'BUS') { color = '#027ac9'; weight = 8; }
-    else if (leg.mode === 'BYCICLE') { color = '#fbbd1a'; weight = 6; }
-    else if (leg.mode === 'WALK') { color = 'gray'; weight = 4; dash = '1, 8' }
+    if (leg.mode === 'WALK') { color = 'gray'; weight = 4; dash = '1, 8' }
+    else { color = '#9B1D20'; weight = 6; }
 
     const polylineLeg = L.polyline([],
       {
@@ -300,7 +299,7 @@ const setDestination = (coords) => {
 
 //##############################
 //calls route creation functions
-const initRoute = async (origin, destination) => {
+const initRoute = async (origin, destination) => {      //{mode: BICYCLE, qualifier: RENT}, {mode: WALK}
   const itinerary = await fetchTransit(`
   {
     plan(
@@ -368,7 +367,7 @@ const coordAddress = async (input) => {
 const form = document.getElementById('form');
 window.onload = () => {
   locate();
-  setInterval(locate, 5000);    //sets interval for user position tracking
+  setInterval(locate, 5000);        //sets interval for user position tracking
   form.onsubmit = async (e) => {
     e.preventDefault();
     if (inputOrigin.value !== '') {

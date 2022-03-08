@@ -160,14 +160,14 @@ label
 }
 #inputOrigin
 {
-    background: url(media/img/icon/markerRed.ico);
+    background: url(media/img/icon/markerRed.png);
     background-repeat: no-repeat;
     background-position: 0% 50%;
     background-size: 36px 36px;
 }
 #inputDestin
 {
-    background: url(media/img/icon/markerGreen.ico);
+    background: url(media/img/icon/markerGreen.png);
     background-repeat: no-repeat;
     background-position: 0% 50%;
     background-size: 36px 36px;
@@ -260,13 +260,13 @@ img.markerGreen
 }
 #toggleTrack
 {
-    background: url(media/img/icon/disTrack.ico) no-repeat center;
+    background: url(media/img/icon/disTrack.png) no-repeat center;
     background-size: cover;
     margin: 0;
 }
 #toggleTrack.true
 {
-    background: url(media/img/icon/enaTrack.ico) no-repeat center;
+    background: url(media/img/icon/enaTrack.png) no-repeat center;
     background-size: cover;
 }
 #toggleBikes
@@ -303,21 +303,21 @@ img.markerGreen
     }
     #linkHome > h3
     {
-        background: url(media/img/icon/home.ico) no-repeat center; 
+        background: url(media/img/icon/home.png) no-repeat center; 
         background-size: contain;
         height: 4vh;
         width: 4vh;
     }
     #linkVideo > h3
     {
-        background: url(media/img/icon/home.ico) no-repeat center; 
+        background: url(media/img/icon/media.png) no-repeat center; 
         background-size: contain;
         height: 4vh;
         width: 4vh;
     }
     #linkAbout > h3
     {
-        background: url(media/img/icon/home.ico) no-repeat center; 
+        background: url(media/img/icon/about.png) no-repeat center; 
         background-size: contain;
         height: 4vh;
         width: 4vh;
