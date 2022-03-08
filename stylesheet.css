@@ -197,9 +197,24 @@ h1#about{
     margin: 8px;
 }
 .weather-container {
-    background: url(media/sun.jpg) no-repeat center;
-    background-size: cover;
     line-height: 1.5em;
+}
+aside.media {
+    background-color: lightgrey;
+    width: 300px;
+    text-align: center;
+}
+main.media {
+    justify-content: space-between;
+}
+div#video {
+    flex-direction: column;
+}
+@media only screen and (max-width: 1020px) {
+    aside.media {
+        flex-direction: row;
+        width: 100%;
+    }
 }
 
 /*=============================================*/
