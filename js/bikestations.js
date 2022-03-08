@@ -38,4 +38,5 @@ Spaces available: ${data.data.bikeRentalStations[i].spacesAvailable}<br>`;
       }).addTo(bikeStations).bindPopup(text);
     }
   })
+  map.removeLayer(bikeStations);
 }

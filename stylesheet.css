@@ -309,17 +309,35 @@ img.markerGreen
 #toggleTrack
 {
     background: url(media/img/icon/disTrack.png) no-repeat center;
-    background-size: cover;
+    background-size: contain;
     margin: 0;
 }
 #toggleTrack.true
 {
     background: url(media/img/icon/enaTrack.png) no-repeat center;
-    background-size: cover;
+    background-size: contain;
+}
+#toggleBikes.true
+{
+    background: url(media/img/icon/enaBikestations.png) no-repeat center;
+    background-size: contain;
 }
 #toggleBikes
 {
+    background: url(media/img/icon/disBikestations.png) no-repeat center;
+    background-size: contain;
     margin: 0;
+}
+#refreshBikes
+{
+    background: url(media/img/icon/refresh.png) no-repeat center;
+    background-size: contain;
+    margin: 0;
+}
+#refreshBikes:hover
+{
+    background: url(media/img/icon/refreshHover.png) no-repeat center;
+    background-size: contain;
 }
 .leaflet-control
 {
@@ -423,6 +441,16 @@ img.markerGreen
 /*=============================================*/
 @media (pointer: none), (pointer: coarse) {
     #toggleTrack
+    {
+        width: 7vh;
+        height: 7vh;
+    }
+    #toggleBikes
+    {
+        width: 7vh;
+        height: 7vh;
+    }
+    #refreshBikes
     {
         width: 7vh;
         height: 7vh;

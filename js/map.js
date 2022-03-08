@@ -96,7 +96,7 @@ const trackControl = L.Control.extend({
 
   onAdd : function (map) {
     const container = L.DomUtil.create('div');
-    container.className = "leaflet-bar leaflet-control";
+    container.className = "leaflet-bar";
 
     if (!L.Browser.touch) {
         L.DomEvent.disableClickPropagation(container)
@@ -114,13 +114,16 @@ map.addControl(new trackControl());
 //toggles bikestation visibility on the map
 let hideBikes = true;
 const toggleBikes = () => {
+  const toggle = document.getElementById('toggleBikes');
   getStations();
   if (!hideBikes) {
     map.removeLayer(bikeStations);
     hideBikes = true;
+    toggle.classList.remove('true');
   } else {
     map.addLayer(bikeStations);
     hideBikes = false;
+    toggle.classList.add('true');
   }
 }
 
@@ -131,7 +134,7 @@ const bikeControl = L.Control.extend({
 
   onAdd : function (map) {
     const container = L.DomUtil.create('div');
-    container.className = "leaflet-bar leaflet-control";
+    container.className = "leaflet-bar";
 
     if (!L.Browser.touch) {
         L.DomEvent.disableClickPropagation(container)
@@ -140,8 +143,8 @@ const bikeControl = L.Control.extend({
         L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
     }
     container.innerHTML += `
-              <a id="toggleBikes" class="leaflet-control" role="button" href="javascript:toggleBikes()">B</a>
-              <a id="toggleBikes" class="leaflet-control" role="button" href="javascript:getStations()">R</a>`;
+              <a id="toggleBikes" class="leaflet-control" role="button" href="javascript:toggleBikes()"></a>
+              <a id="refreshBikes" class="leaflet-control" role="button" href="javascript:getStations()"></a>`;
     return container;
 }});
 map.addControl(new bikeControl());
