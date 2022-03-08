@@ -112,8 +112,9 @@ map.addControl(new trackControl());
 
 //#########################################
 //toggles bikestation visibility on the map
-let hideBikes = false;
+let hideBikes = true;
 const toggleBikes = () => {
+  getStations();
   if (!hideBikes) {
     map.removeLayer(bikeStations);
     hideBikes = true;
