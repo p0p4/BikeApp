@@ -209,6 +209,9 @@ main.media {
 }
 div#video {
     flex-direction: column;
+    padding: 40px;
+    font-size: 17px;
+    line-height: 1.5rem;
 }
 @media only screen and (max-width: 1020px) {
     aside.media {
@@ -216,7 +219,16 @@ div#video {
         width: 100%;
     }
 }
-
+main.about {
+    flex-direction: column;
+    padding: 40px
+}
+article {
+    margin-top: 30px;
+}
+#lorem {
+    margin-bottom: 10px;
+}
 /*=============================================*/
 /*                     Map                     */
 /*=============================================*/
