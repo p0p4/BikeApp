@@ -112,7 +112,7 @@ map.addControl(new trackControl());
 
 //#########################################
 //toggles bikestation visibility on the map
-let hideBikes = false;
+let hideBikes = true;
 const toggleBikes = () => {
   if (!hideBikes) {
     map.removeLayer(bikeStations);
@@ -123,8 +123,8 @@ const toggleBikes = () => {
   }
 }
 
-//#############################################################
-//creates a button on the map for bikestation visibility toggle
+//##########################################################################
+//creates a button on the map for bikestation visibility and resfresh toggle
 const bikeControl = L.Control.extend({
   options: {position: 'topright'},
 
@@ -140,7 +140,7 @@ const bikeControl = L.Control.extend({
     }
     container.innerHTML += `
               <a id="toggleBikes" class="leaflet-control" role="button" href="javascript:toggleBikes()">B</a>
-                <a id="toggleBikes" class="leaflet-control" role="button" href="javascript:getStations()">Refresh</a>`;
+              <a id="toggleBikes" class="leaflet-control" role="button" href="javascript:getStations()">R</a>`;
     return container;
 }});
 map.addControl(new bikeControl());
@@ -385,6 +385,9 @@ window.onload = () => {
     if (origin && destination) initRoute(origin, destination);
 
     if (L.Browser.mobile) {
+      window.scrollTo(0, 0);
+      inputOrigin.blur();
+      inputDestin.blur();
       if (inputOrigin.value === '') {
         if (!track) toggleTrack();
         map.setView(userPos, 17);

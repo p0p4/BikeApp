@@ -28,9 +28,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html"><h3>Home</h3></a></li>
-                    <li><a href="video.html"><h3>Video</h3></a></li>
-                    <li><a href="about.html"><h3>About</h3></a></li>
+                    <li><a id="linkHome" href="index.html"><h3>Home</h3></a></li>
+                    <li><a id="linkVideo" href="video.html"><h3>Video</h3></a></li>
+                    <li><a id="linkAbout" href="about.html"><h3>About</h3></a></li>
                 </ul>
             </nav>
         </header>
@@ -42,11 +42,11 @@
                     <form id="form">
                         <input type="submit" style="visibility: hidden;">
                         <div class="origin-container">
-                            <label for="origin">Origin:</label>
+                            <label for="inputOrigin">Origin:</label>
                             <input name="origin" type="search" id="inputOrigin" class="inputs" placeholder="Empty for your location">
                         </div>
                         <div class="destin-container">
-                            <label for="destination">Destination:</label>
+                            <label for="inputDestin">Destination:</label>
                             <input name="destination" type="search" id="inputDestin" class="inputs" placeholder="Enter destination" required>
                         </div>
                     </form>
@@ -68,6 +68,7 @@
             </div>
         </main>
     </body>
+    <div id="turn"><h1>Please turn your device!</h1></div>
     <script src="js/map.js"></script>
     <script src="js/weather.js"></script>
     <script src="js/bikestations.js"></script>

@@ -40,6 +40,10 @@ body
     display: flex;
     flex-direction: column;
 }
+#turn
+{
+    display: none;
+}
 
 
 /*=============================================*/
@@ -111,6 +115,7 @@ header > nav > ul > li > a:hover
 main
 {
     display: flex;
+    background-color: var(--color-white);
 }
 aside
 {
@@ -142,7 +147,7 @@ label
 .inputs
 {
     outline: none; 
-    width: 100%; 
+    width: 100%;
     padding-left: 40px;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -155,14 +160,14 @@ label
 }
 #inputOrigin
 {
-    background: url(media/icon/markerRed.ico);
+    background: url(media/img/icon/markerRed.ico);
     background-repeat: no-repeat;
     background-position: 0% 50%;
     background-size: 36px 36px;
 }
 #inputDestin
 {
-    background: url(media/icon/markerGreen.ico);
+    background: url(media/img/icon/markerGreen.ico);
     background-repeat: no-repeat;
     background-position: 0% 50%;
     background-size: 36px 36px;
@@ -228,14 +233,14 @@ img.markerGreen
 }
 #toggleTrack
 {
-    background: url(media/icon/disTrack.ico) no-repeat center; 
-    background-size:cover;
+    background: url(media/img/icon/disTrack.ico) no-repeat center;
+    background-size: cover;
     margin: 0;
 }
 #toggleTrack.true
 {
-    background: url(media/icon/enaTrack.ico) no-repeat center; 
-    background-size:cover;
+    background: url(media/img/icon/enaTrack.ico) no-repeat center;
+    background-size: cover;
 }
 #toggleBikes
 {
@@ -259,6 +264,36 @@ img.markerGreen
     {
         position: fixed;
         z-index: 3;
+    }
+    .title-container > a > h1
+    {
+        font-size: 5vh;
+    }
+    header > nav > ul > li > a
+    {
+        padding: 0 1vh;
+        font-size: 0;
+    }
+    #linkHome > h3
+    {
+        background: url(media/img/icon/home.ico) no-repeat center; 
+        background-size: contain;
+        height: 4vh;
+        width: 4vh;
+    }
+    #linkVideo > h3
+    {
+        background: url(media/img/icon/home.ico) no-repeat center; 
+        background-size: contain;
+        height: 4vh;
+        width: 4vh;
+    }
+    #linkAbout > h3
+    {
+        background: url(media/img/icon/home.ico) no-repeat center; 
+        background-size: contain;
+        height: 4vh;
+        width: 4vh;
     }
     main
     {
@@ -320,5 +355,18 @@ img.markerGreen
     #inputDestin
     {
         background-size: 34px 34px;
+    }
+}
+
+@media only screen and (pointer: none), (pointer: coarse) and (orientation: landscape) {
+    body
+    {
+        display: none;
+    }
+    #turn
+    {
+        display:flex;
+        background-color: var(--color-main);
+        color: var(--color-white);
     }
 }
