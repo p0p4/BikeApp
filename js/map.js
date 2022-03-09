@@ -115,7 +115,6 @@ map.addControl(new trackControl());
 let hideBikes = true;
 const toggleBikes = () => {
   const toggle = document.getElementById('toggleBikes');
-  getStations();
   if (!hideBikes) {
     map.removeLayer(bikeStations);
     hideBikes = true;
@@ -301,7 +300,7 @@ const setDestination = (coords) => {
 }
 
 //##############################
-//calls route creation functions
+//calls route creation functions                        //{mode: BUS}, {mode: WALK} BUS INCLUDED FOR TESTING PURPOSES ONLY!
 const initRoute = async (origin, destination) => {      //{mode: BICYCLE, qualifier: RENT}, {mode: WALK}
   const itinerary = await fetchTransit(`
   {
