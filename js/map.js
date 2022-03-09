@@ -110,10 +110,6 @@ const trackControl = L.Control.extend({
 }});
 map.addControl(new trackControl());
 
-map.on('mousedown touchstart', () => {
-  if (track) toggleTrack();
-});
-
 //#########################################
 //toggles bikestation visibility on the map
 let hideBikes = true;
