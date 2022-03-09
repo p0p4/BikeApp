@@ -238,6 +238,13 @@ div#video {
         justify-content: space-around;
     }
 }
+video {
+    padding-bottom: 20px;
+}
+audio {
+    padding-bottom: 20px;
+}
+
 
 /*=============================================*/
 /*                   About                     */
