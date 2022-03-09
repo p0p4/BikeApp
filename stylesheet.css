@@ -18,7 +18,7 @@ FC9E4F
 {
     /*COLORS*/
     --color-main: #9B1D20;
-    --color-main-highlight: brown;
+    --color-main-highlight: #A81F26;
     --color-white: white;
     --color-border1: #DDD;
 }
@@ -251,11 +251,13 @@ div#video {
 }
 .aboutMain > h1 {
     margin-left: 16px;
+    margin-bottom: 8px;
 }
 .aboutFigures {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    border-top: 2px solid var(--color-border1);
     border-bottom: 2px solid var(--color-border1);
 }
 article {
@@ -263,6 +265,11 @@ article {
 }
 #lorem {
     margin-bottom: 10px;
+}
+@media only screen and (max-width: 624px) {
+    .aboutFigures {
+        justify-content: center;
+    }
 }
 
 /*=============================================*/

@@ -32,11 +32,12 @@ Spaces available: ${data.data.bikeRentalStations[i].spacesAvailable}<br>`;
       };
       L.circleMarker([crd.latitude, crd.longitude], {
         radius: 6,
-        color: '#fbbd1a',
-        fillColor: 'white',
+        color: '#9B1D20',
+        fillColor: '#fbbd1a',
         fillOpacity: 100
       }).addTo(bikeStations).bindPopup(text);
     }
   })
-  map.removeLayer(bikeStations);
 }
+getStations();
+map.removeLayer(bikeStations);
