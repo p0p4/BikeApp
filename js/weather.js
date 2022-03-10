@@ -43,7 +43,7 @@ function getWeather () {
   });
 }
 
-//show weather based on user input
+//show weather based on user input (0-9h)
 function input (){
   const value = document.querySelector('#myRange').value;
 
