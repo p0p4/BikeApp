@@ -1,6 +1,6 @@
 'use strict'
 
-//Location search options
+//location search options
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,
