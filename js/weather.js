@@ -17,7 +17,7 @@ function success(pos) {
   document.querySelector('#value').innerHTML = `now`;
 
 
-  //add weather info to HTML
+  //add weather to HTML
     getWeather().then(function(weather) {
       document.querySelector('#temp').innerHTML = `Temperature: ${(weather.hourly[0].temp).toFixed(1)} C`;
       document.querySelector(
