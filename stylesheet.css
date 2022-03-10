@@ -284,9 +284,10 @@ label
         padding: 0 1.5vw;
         margin: 0;
     }
-}
-.media-h2 {
-    padding-bottom: 8px;
+    .media-section > h2 
+    {
+        margin: 8px 0 16px 0;
+    }
 }
 
 
