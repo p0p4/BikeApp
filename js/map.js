@@ -7,10 +7,10 @@ const map = L.map('map', {
   minZoom: 10,
   tap: false,
   maxBounds: [
-    //centre
+    //map bound centre
     //60.16095
     //24.95634
-    //S-W
+    //south-west
     [60.06095, 24.45634],
     //N-E
     [60.46095, 25.45634]]
@@ -20,7 +20,7 @@ if (!L.Browser.mobile) {
     position: 'bottomright'
   }).addTo(map);
 }
-map.setView([60.196431, 24.936256], 12);
+map.setView([60.196431, 24.936256], 12);      //initialize map position
 
 //################################
 //creating groups for map features
@@ -217,6 +217,7 @@ const displayRoute = (itinerary) => {
   inputDestin.value = destination.name;
   const durSec = itinerary.duration;
   let disMet = 0;
+  //displaying route legs
   itinerary.legs.forEach(function (leg) {
     let color, weight, dash = '';
     if (leg.mode === 'WALK') { color = 'gray'; weight = 4; dash = '1, 8' }
@@ -235,7 +236,7 @@ const displayRoute = (itinerary) => {
     });
     disMet += leg.distance;
   });
-
+  //displaying duration
   const h = Math.floor(durSec / 3600);
   const m = Math.floor(durSec % 3600 / 60);
   const s = Math.floor(durSec % 3600 % 60);
@@ -245,7 +246,7 @@ const displayRoute = (itinerary) => {
   const sDisplay = (s > 0 && h === 0) ? s + 's ' : "";
 
   routeDuration.innerText = hDisplay + mDisplay + sDisplay;
-
+  //diplaying distance
   if (disMet >= 1000) {
     routeDistance.innerText = Math.round((disMet / 1000) * 10) / 10 + 'km';
   } else {
@@ -301,7 +302,7 @@ const setDestination = (coords) => {
 
 //##############################
 //calls route creation functions                        //{mode: BUS}, {mode: WALK} BUS INCLUDED FOR TESTING PURPOSES ONLY!
-const initRoute = async (origin, destination) => {      //{mode: BICYCLE, qualifier: RENT}, {mode: WALK}
+const initRoute = async (origin, destination) => {      //{mode: BICYCLE, qualifier: RENT}, {mode: WALK} modes for actual use case of app
   const itinerary = await fetchTransit(`
   {
     plan(
@@ -345,7 +346,7 @@ const initRoute = async (origin, destination) => {      //{mode: BICYCLE, qualif
 //####################################################
 //takes in coords or location names and gives out both
 const coordAddress = async (input) => {
-  let url;
+  let url;      //chooses which API is used based on the paramater
   if (input.lat) url = `https://api.digitransit.fi/geocoding/v1/reverse?point.lat=${input.lat}&point.lon=${input.lng}&size=1`;
   else url = `https://api.digitransit.fi/geocoding/v1/search?text=${input}
     &boundary.circle.lat=60.160959094315416&boundary.circle.lon=24.95634747175871&boundary.circle.radius=20&size=1
@@ -372,7 +373,7 @@ window.onload = () => {
   setInterval(locate, 5000);        //sets interval for user position tracking
   form.onsubmit = async (e) => {
     e.preventDefault();
-    if (inputOrigin.value !== '') {
+    if (inputOrigin.value !== '') {                 //selects origin based on available coordinates
       origin = await coordAddress(inputOrigin.value);
     } else if (userPos) {
       origin = await coordAddress(userPos);
@@ -387,11 +388,11 @@ window.onload = () => {
     if (origin && destination) initRoute(origin, destination);
 
     if (L.Browser.mobile) {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0);    //scrolls to map on mobile and closes the keyboard
       inputOrigin.blur();
       inputDestin.blur();
       if (inputOrigin.value === '') {
-        if (!track) toggleTrack();
+        if (!track) toggleTrack();    //moves map view to origin or user position based on input
         map.setView(userPos, 17);
       } else {
         if (track) toggleTrack();
