@@ -1,19 +1,23 @@
 'use strict'
 
+//Location search options
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,
   maximumAge: 0
 };
 
+
 function success(pos) {
   const crd = pos.coords;
 
-  sessionStorage.setItem("pos_lat",crd.latitude);
+  sessionStorage.setItem("pos_lat",crd.latitude);     //save location to session storage
   sessionStorage.setItem("pos_lon",crd.longitude);
 
   document.querySelector('#value').innerHTML = `now`;
 
+
+  //add weather info to HTML
     getWeather().then(function(weather) {
       document.querySelector('#temp').innerHTML = `Temperature: ${weather.hourly[0].temp} C`;
       document.querySelector(
@@ -25,6 +29,7 @@ function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
+//weather api fetch
 function getWeather () {
   const proxy = 'https://api.allorigins.win/get?url=';
   const key = '2c6ab1bfb47205e78b859594f1986b0e';
@@ -38,6 +43,7 @@ function getWeather () {
   });
 }
 
+//show weather based on user input
 function input (){
   const value = document.querySelector('#myRange').value;
 
@@ -54,6 +60,7 @@ function input (){
   });
 }
 
-navigator.geolocation.getCurrentPosition(success, error, options);
-const latitude = parseFloat(sessionStorage.getItem("pos_lat"));
+
+navigator.geolocation.getCurrentPosition(success, error, options);    //get location
+const latitude = parseFloat(sessionStorage.getItem("pos_lat"));     //get location from session storage
 const longitude = parseFloat(sessionStorage.getItem("pos_lon"));

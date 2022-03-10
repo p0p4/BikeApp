@@ -1,6 +1,7 @@
 'use strict'
 
 function getStations() {
+  //fetch bike stations from api
   fetch('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql', {
     method: 'POST',
     headers: {"Content-Type": "application/json"},
@@ -21,6 +22,8 @@ function getStations() {
   }).then(res => res.json()).then(data => {
     console.log(data)
 
+
+    //add bike stations to map
     for (let i = 0; i < data.data.bikeRentalStations.length; i++) {
 
       const text = `<b>${data.data.bikeRentalStations[i].name}</b><br>
