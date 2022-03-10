@@ -1,0 +1,41 @@
+
+:root
+{
+    /*COLORS*/
+    --color-main: #9B1D20;
+    --color-main-highlight: #A81F26;
+    --color-white: white;
+    --color-border1: #DDD;
+}
+*
+{
+    font-family: 'Rubik', sans-serif;
+}
+body{
+    background-color: var(--color-main);
+}
+.title
+{
+    display: block;
+    background-color: white;
+    width: 80vw;
+    height: 80vh;
+    color: var(--color-white);
+    font-size: 6vw;
+    text-shadow: 0 2px 2px black;
+    text-align: center;
+    justify-content: center;
+    
+}
+.box {
+    display: block;
+    width: 80vw;
+    height: 80vh;
+    padding: 30px 50px;
+    background-color: white;
+    box-shadow: 0 2px 6px black;
+    border: 1px solid var(--color-border1);
+    border-radius: 25px;
+    text-shadow: 0 2px 2px black;
+    font-size: 40px;
+}
