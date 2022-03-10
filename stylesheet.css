@@ -222,7 +222,7 @@ label
 }
 .media-section > p
 {
-    margin: 16px 16px;
+    margin: 16px 16px 0 16px;
 }
 .media-section > div 
 {
@@ -230,13 +230,13 @@ label
 }
 .media-section > div > video 
 {
-    margin: 16px 16px;
+    margin: 16px;
     position: relative;
 }
 .media-section > div > div 
 {
     align-self: flex-end;
-    margin: 16px 16px;
+    margin: 16px;
     position: relative;
 }
 .media-section > div > div > h3
@@ -278,10 +278,6 @@ label
     .media-section
     {
         padding: 0;
-    }
-    .media-section > p
-    {
-        margin: 0 16px;
     }
     .media-section > div 
     {
