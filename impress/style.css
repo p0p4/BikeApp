@@ -70,6 +70,7 @@ body{
 {
     align-self: center;
     width: 95%;
+    max-height: 95%;
     margin: 1vh 0;
 }
 .imageSub
