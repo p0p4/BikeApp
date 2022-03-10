@@ -47,14 +47,6 @@ body{
 	text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
     font-size: 40px;
 }
-.api-esimerkit {
-    font-size:60%;
-    line-height: 1.4em;
-}
-.api-esimerkit2 {
-    font-size: 60%;
-    line-height: 1.2em;
-}
 
 .codeDisplay
 {
