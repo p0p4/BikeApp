@@ -24,6 +24,17 @@ body{
 	text-shadow: 0 2px 2px black;
     text-align: center;
 }
+.group-title
+{
+    padding-top: 10vh;
+    font-size: 10vh;
+    margin: 3vh;
+}
+.dev-names
+{
+    font-size: 6vh;
+    margin-top: 20vh;
+}
 .box {
     display: block;
     width: 80vw;
@@ -43,4 +54,21 @@ body{
 .api-esimerkit2 {
     font-size: 60%;
     line-height: 1.2em;
+}
+
+.codeDisplay
+{
+    align-self: center;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    background-color: #1E1E1E;
+    border-radius: 25px;
+}
+.codeDisplay > img
+{
+    align-self: center;
+    width: 95%;
+    height: 90%;
+    margin: 1vh 0;
 }

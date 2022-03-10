@@ -197,11 +197,12 @@ const fetchTransit = async (query) => {
       }),
       headers: { 'Content-Type': 'application/json' }
     });
+    console.log(response.ok);
     const body = await response.json();
     console.log(body);
     return body.data.plan.itineraries[0];
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    console.error(err);
   }
 }
 
@@ -353,6 +354,7 @@ const coordAddress = async (input) => {
     &focus.point.lat=${map.getCenter().lat}&focus.point.lon=${map.getCenter().lng}`;
   try {
     const response = await fetch(url);
+    console.log(response.ok);
     const json = await response.json();
     const output = {
       name: json.features[0].properties.label,
@@ -360,8 +362,8 @@ const coordAddress = async (input) => {
       lon: input.lng ? input.lng : json.features[0].geometry.coordinates[0]
     }
     return output;
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    console.error(err);
   }
 }
 
