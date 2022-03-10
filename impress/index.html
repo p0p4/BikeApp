@@ -39,11 +39,40 @@
             </div>
             <div class="step box" data-x="6000" data-y="1000">
                 <h2>Weather api</h2>
-                <p>This is my third slide!!</p>
+                <p class="api-esimerkit">function getWeather () { <br>
+                    const proxy = 'https://api.allorigins.win/get?url=';<br>
+                    const key = '2c6ab1bfb47205e78b859594f1986b0e';<br>
+                    const search = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;<br>
+                    const url = proxy + encodeURIComponent(search);<br>
+                    <br>
+                    return fetch(url).then(function(response) {<br>
+                    return response.json();<br>
+                    }).then(function (data) {<br>
+                    return JSON.parse(data.contents);<br>
+                    });<br>
+                    }</p>
             </div>
             <div class="step box" data-x="8000" data-y="1000">
-                <h2>Sovelluksen ominaisuudet ja toiminnot</h2>
-                <p>This is my third slide!!</p>
+                <h2>Digitransit api</h2>
+                <p class="api-esimerkit2">fetch('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql', {<br>
+                    method: 'POST',<br>
+                    headers: {"Content-Type": "application/json"},<br>
+                    body: JSON.stringify({<br>
+                    query: `<br>
+                    query {<br>
+                    bikeRentalStations {<br>
+                    name<br>
+                    lon<br>
+                    lat<br>
+                    bikesAvailable<br>
+                    spacesAvailable<br>
+                    }
+                    }
+                    `
+                    }),<br>
+                    json: true<br>
+                    }<br>
+                </p>
             </div>
 
         </div>

@@ -20,10 +20,8 @@ function getStations() {
     }),
     json: true
   }).then(res => res.json()).then(data => {
-    console.log(data)
 
-
-    //add bike stations to map
+    //add bike station markers with popups to map
     for (let i = 0; i < data.data.bikeRentalStations.length; i++) {
 
       const text = `<b>${data.data.bikeRentalStations[i].name}</b><br>
