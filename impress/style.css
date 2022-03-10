@@ -84,3 +84,13 @@ p
 {
     padding: 3vh 0 0 0;
 }
+.link
+{
+    font-weight: bold;
+    font-size: 15vh;
+    color: var(--color-white);
+}
+.end
+{
+    padding-top: 50vh;
+}
