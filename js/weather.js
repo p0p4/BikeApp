@@ -31,6 +31,9 @@ function error(err) {
 
 //weather api fetch
 function getWeather () {
+  const latitude = parseFloat(sessionStorage.getItem("pos_lat"));     //get location from session storage
+  const longitude = parseFloat(sessionStorage.getItem("pos_lon"));
+
   const proxy = 'https://api.allorigins.win/get?url=';
   const key = '2c6ab1bfb47205e78b859594f1986b0e';
   const search = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;
@@ -39,6 +42,7 @@ function getWeather () {
   return fetch(url).then(function(response) {
     return response.json();
   }).then(function (data) {
+    console.log(data);
     return JSON.parse(data.contents);
   });
 }
@@ -62,5 +66,3 @@ function input (){
 
 
 navigator.geolocation.getCurrentPosition(success, error, options);    //get location
-const latitude = parseFloat(sessionStorage.getItem("pos_lat"));     //get location from session storage
-const longitude = parseFloat(sessionStorage.getItem("pos_lon"));
