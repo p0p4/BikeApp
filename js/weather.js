@@ -17,7 +17,7 @@ function success(pos) {
   document.querySelector('#value').innerHTML = `now`;
 
 
-  //add weather info to HTML
+  //add weather to HTML
     getWeather().then(function(weather) {
       document.querySelector('#temp').innerHTML = `Temperature: ${(weather.hourly[0].temp).toFixed(1)} C`;
       document.querySelector(
@@ -33,7 +33,8 @@ function error(err) {
 function getWeather () {
   const proxy = 'https://api.allorigins.win/get?url=';
   const key = '2c6ab1bfb47205e78b859594f1986b0e';
-  const search = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;
+  const search = `https://api.openweathermap.org/data/2.5/onecall?
+  lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;
   const url = proxy + encodeURIComponent(search);
 
   return fetch(url).then(function(response) {

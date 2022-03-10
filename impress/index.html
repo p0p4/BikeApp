@@ -28,7 +28,7 @@
                 <h2>Sovelluksen yleiskuvaus</h2>
                 <p>Käyttäjäryhmä: Kaupunkipyöriä käyttävät ihmiset</p>
                 <p>Käyttötarkoitus: Helpoittaa kaupunkipyörien käyttöä</p>
-                <p></p>
+                <p>Sisältö: Kartta, sää ja reitin luominen</p>
             </div>
 
             <div class="step box" data-x="0" data-y="3000" data-z="0">
@@ -39,8 +39,11 @@
             </div>
 
             <div class="step box" data-x="0" data-y="4000" data-z="0">
-                <h2>Weather api</h2>
-                <p class="api-esimerkit">function getWeather () { <br>
+                <p>Weather api</p>
+                <figure>
+                    <img src="/media/img/weather_api.png" height="450">
+                </figure>
+                <!--<p class="api-esimerkit">function getWeather () { <br>
                     const proxy = 'https://api.allorigins.win/get?url=';<br>
                     const key = '2c6ab1bfb47205e78b859594f1986b0e';<br>
                     const search = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;<br>
@@ -51,11 +54,15 @@
                     }).then(function (data) {<br>
                     return JSON.parse(data.contents);<br>
                     });<br>
-                    }</p>
+                    }</p>-->
             </div>
 
             <div class="step box" data-x="0" data-y="5000" data-z="0">
-                <p class="api-esimerkit2">fetch('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql', {<br>
+                <p>Digitransit api</p>
+                <figure>
+                    <img src="/media/img/digitransit_api.png" height="450">
+                </figure>
+                <!--<p class="api-esimerkit2">fetch('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql', {<br>
                     method: 'POST',<br>
                     headers: {"Content-Type": "application/json"},<br>
                     body: JSON.stringify({<br>
@@ -73,7 +80,7 @@
                     }),<br>
                     json: true<br>
                     }<br>
-                </p>
+                </p>-->
             </div>
 
             <div class="step box" data-x="0" data-y="6000" data-z="0">
