@@ -284,9 +284,9 @@ label
         padding: 0 1.5vw;
         margin: 0;
     }
-}
-.media-h2 {
-    padding-bottom: 8px;
+    .media-h2 {
+        padding: 8px 16px;
+    }
 }
 
 
