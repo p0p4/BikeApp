@@ -2,7 +2,7 @@
 
 function getStations() {
   //fetch bike stations from api
-  fetch('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql', {
+  fetch('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql?digitransit-subscription-key=8cb8c4f0089d4f25aa4307567cd01383', {
     method: 'POST',
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({

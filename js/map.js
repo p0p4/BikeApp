@@ -22,6 +22,8 @@ if (!L.Browser.mobile) {
 }
 map.setView([60.196431, 24.936256], 12);      //initialize map position
 
+const accessKey = '8cb8c4f0089d4f25aa4307567cd01383';
+
 //################################
 //creating groups for map features
 const itinerary_features = L.featureGroup().addTo(map);
@@ -31,13 +33,13 @@ const markers = L.featureGroup().addTo(map);
 
 //######################################
 //giving the open street map a tilelayer
-const osm = L.tileLayer('https://cdn.digitransit.fi/map/v1/{id}/{z}/{x}/{y}@2x.png', {
+const osm = L.tileLayer('https://cdn.digitransit.fi/map/v2/{id}/{z}/{x}/{y}@2x.png', {
   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
     '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
   maxZoom: 19,
   tileSize: 512,
   zoomOffset: -1,
-  id: 'hsl-map'
+  id: 'hsl-map-en'
 });
 osm.addTo(map);
 
@@ -188,7 +190,7 @@ map.on('click', async (e) => {
 //###################################
 //fetches route data from digitransit
 const fetchTransit = async (query) => {
-  const url = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
+  const url = `https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql?digitransit-subscription-key=${accessKey}`;
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -348,10 +350,10 @@ const initRoute = async (origin, destination) => {      //{mode: BICYCLE, qualif
 //takes in coords or location names and gives out both
 const coordAddress = async (input) => {
   let url;      //chooses which API is used based on the paramater
-  if (input.lat) url = `https://api.digitransit.fi/geocoding/v1/reverse?point.lat=${input.lat}&point.lon=${input.lng}&size=1`;
+  if (input.lat) url = `https://api.digitransit.fi/geocoding/v1/reverse?point.lat=${input.lat}&point.lon=${input.lng}&size=1?&digitransit-subscription-key=${accessKey}`;
   else url = `https://api.digitransit.fi/geocoding/v1/search?text=${input}
     &boundary.circle.lat=60.160959094315416&boundary.circle.lon=24.95634747175871&boundary.circle.radius=20&size=1
-    &focus.point.lat=${map.getCenter().lat}&focus.point.lon=${map.getCenter().lng}`;
+    &focus.point.lat=${map.getCenter().lat}&focus.point.lon=${map.getCenter().lng}?&digitransit-subscription-key=${accessKey}`;
   try {
     const response = await fetch(url);
     console.log(response.ok);
